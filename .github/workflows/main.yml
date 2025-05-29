@@ -12,7 +12,12 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIV_KEY }}
-          script: echo ${{ secrets.USER_PASS }} | sudo -S rm -rf /var/www/palkas.ru/*
+          script: | 
+            if [ "$(ls -A /var/www/palkas.ru/)" ]; then
+            echo ${{ secrets.USER_PASS }} | sudo -S rm -rf /var/www/palkas.ru/*
+            else
+            echo "Directory is already empty, skipping deletion."
+            fi
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
