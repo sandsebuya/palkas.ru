@@ -34,5 +34,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIV_KEY }}
           script: |
-            SHELL="/bin/bash" echo ${{ secrets.USER_PASS }} | sudo -S -c mv /home/nikolay/server/* /var/www/palkas.ru/
+            SHELL="/bin/bash" echo ${{ secrets.USER_PASS }} | sudo -S -s mv /home/nikolay/server/* /var/www/palkas.ru/
             rm -rf /home/nikolay/server/*
